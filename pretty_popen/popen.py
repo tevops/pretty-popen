@@ -1,13 +1,10 @@
 import json
 import logging
-
-import yaml
+from functools import singledispatchmethod
+from json import JSONDecodeError
 from pathlib import Path
 from subprocess import Popen
-from functools import singledispatchmethod
-
 from typing import Dict, Union, Iterable, List
-from json import JSONDecodeError
 
 from .constants import BREAK
 
@@ -36,7 +33,7 @@ class PrettyPopen(Popen):
         return proper_values and proper_dict
 
     @staticmethod
-    def merge_dicts(list_of_dicts: List[Dict]) -> Dict:
+    def merge_dicts(list_of_dicts: Union[List[Dict], List]) -> Union[Dict, List]:
         """
         -- PyYAML reads a .yaml (as intended in the use case) into
             Dict[str: List[Dict]]
@@ -47,20 +44,24 @@ class PrettyPopen(Popen):
         :param list_of_dicts:
         :return: the list of dicts merged into a single dict.
         """
-        logger.debug(list_of_dicts)
-        merged_dicts = dict(keyval for subdict in list_of_dicts for keyval in subdict.items())
-        logger.debug(merged_dicts)
-        return merged_dicts
+        if isinstance(next(iter(list_of_dicts)), dict):
+
+            logger.debug(list_of_dicts)
+            merged_dicts = dict(keyval for subdict in list_of_dicts for keyval in subdict.items())
+            logger.debug(merged_dicts)
+            return merged_dicts
+        return list_of_dicts
 
     @classmethod
     def read_yaml(cls, file_path: str):
-        with open(file_path, 'r') as stream:
-            try:
-                content = yaml.safe_load(stream)
-                return {key: cls.merge_dicts(value) for key, value in content.items()}
-            except yaml.YAMLError as exc:
-                logger.exception(exc)
-                raise exc
+        # with open(file_path, 'r') as stream:
+        #     try:
+        #         content = yaml.safe_load(stream)
+        #         return {key: cls.merge_dicts(value) for key, value in content.items()}
+        #     except yaml.YAMLError as exc:
+        #         logger.exception(exc)
+        #         raise exc
+        raise NotImplementedError
 
     @staticmethod
     def read_json(file_path: Union[str, bytes]):
