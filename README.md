@@ -1,4 +1,5 @@
 # A helper to prettify commands
+---------------------------------------------------------------
 dispatched via subprocess.Popen, especially useful for tools/externals<br> with many arguments. 
 
 <br>
@@ -17,7 +18,7 @@ Example usage: Dict[str: List[Tuple]
     stderr, stdout = process.communicate()
 <br>
 That's it.
-
+---------------------------------------------------------------
 To install simply run:
 
     pip install git+https://github.com/tevops/pretty-popen.git
