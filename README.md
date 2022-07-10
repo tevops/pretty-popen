@@ -1,7 +1,5 @@
 # A helper to prettify commands
 ---------------------------------------------------------------
-########## dispatched via subprocess.Popen, especially useful for tools/externals<br> with many arguments. 
----------------------------------------------------------------
 
 <br>
 
