@@ -4,7 +4,7 @@ dispatched via subprocess.Popen, especially useful for tools/externals<br> with 
 <br>
 
 
-####Example usage: Dict[str: List[Tuple] 
+Example usage: Dict[str: List[Tuple] 
     
     
     process = PrettyPopen(args={"python3 run_file.py": [
