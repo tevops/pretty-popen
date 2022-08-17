@@ -45,7 +45,6 @@ class PrettyPopen(Popen):
         :return: the list of dicts merged into a single dict.
         """
         if isinstance(next(iter(list_of_dicts)), dict):
-
             logger.debug(list_of_dicts)
             merged_dicts = dict(keyval for subdict in list_of_dicts for keyval in subdict.items())
             logger.debug(merged_dicts)
@@ -167,3 +166,6 @@ class PrettyPopen(Popen):
         except Exception as exc:
             logger.exception(exc)
             raise
+
+
+__all__ = ['PrettyPopen']
