@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Union, Dict
 from pytest import mark
 
-from pretty_popen.popen import PrettyPopen
+from src.popen import PrettyPopen
 
 artefact = Path(__file__).parents[2].absolute().joinpath("tests",
                                                          "unit",

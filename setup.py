@@ -8,7 +8,6 @@ with open("requirements.txt", "r") as requirements_file:
     packages = requirements_file.read().splitlines()
 
 setuptools.setup(
-    package_dir={"": "src"},
     name='pretty_popen',
     version='0.0.1',
     author='tevops',
