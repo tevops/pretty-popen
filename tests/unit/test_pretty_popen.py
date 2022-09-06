@@ -2,6 +2,7 @@ import subprocess
 from pathlib import Path
 from typing import Union, Dict
 from pytest import mark
+import time
 
 from pretty_popen import PrettyPopen
 
@@ -60,4 +61,5 @@ def test_yaml():
 
 
 def test_json():
+    time.sleep(100)
     return func(cmd=args_json)
